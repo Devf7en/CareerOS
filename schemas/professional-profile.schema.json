@@ -99,6 +99,13 @@
     "updated_at": {
       "type": "string",
       "format": "date-time"
+    },
+    "professional_hats": {
+      "type": "array",
+      "description": "Distinct professional capacities and identity dimensions. Multiple hats may be concurrent or sequential; this collection is not a substitute for the positions history.",
+      "items": {
+        "$ref": "#/$defs/professionalHat"
+      }
     }
   },
   "$defs": {
@@ -315,6 +322,54 @@
         },
         "evidence_ids": {
           "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "professionalHat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hat_id",
+        "label"
+      ],
+      "properties": {
+        "hat_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "domain": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "position_references": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "capability_references": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
