@@ -22,7 +22,7 @@ The original DOCX and PDF source files have not been committed to this repositor
 - `docs/ROADMAP.md` — phased implementation plan and exit gates
 - `docs/PRIVACY_AND_DATA_GOVERNANCE.md` — public/private data policy
 - `docs/adr/` — architecture decision records
-- `schemas/` — canonical profile, evidence and skills data contracts
+- `schemas/` — canonical profile, evidence, skills, source-snapshot and reconciliation data contracts
 - `src/careeros/` — Python contract validation, cross-record integrity and local DOCX/PDF ingestion staging CLIs
 - `tests/` — schema and data-contract tests
 - `examples/` — non-personal profile template
@@ -36,7 +36,7 @@ Identity & Profile · Evidence Vault · Skills & Competencies · Portfolio & Pro
 ## Core operating principles
 
 - Evidence before claims; provenance and verification status are explicit.
-- One professional source of truth; role-specific documents are derived views.
+- One professional source of truth; role-specific documents are derived views. The canonical identity supports multiple concurrent and sequential professional hats, roles and capability clusters.
 - Human approval is required before external applications or messages.
 - Sensitive evidence, identity documents and secrets are never public by default.
 - Data portability, auditability, explainability and privacy are foundational.
