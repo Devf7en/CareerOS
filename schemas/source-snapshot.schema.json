@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://careeros.f7en.com/schemas/source-snapshot.schema.json",
+  "title": "CareerOS Source Snapshot",
+  "description": "A provenance-preserving record of a source captured for professional-profile review. Snapshot content may contain personal data and must remain private unless explicitly approved.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["source_id", "snapshot_id", "captured_at", "capture_method", "content_sha256", "review_status", "visibility"],
+  "properties": {
+    "source_id": {"type": "string", "pattern": "^SRC-[0-9]{3,}$"},
+    "snapshot_id": {"type": "string", "minLength": 1},
+    "source_uri": {"type": "string", "format": "uri"},
+    "source_filename": {"type": "string"},
+    "captured_at": {"type": "string", "format": "date-time"},
+    "capture_method": {"enum": ["docx_text_extraction", "pdf_text_extraction", "web_capture", "manual_transcription", "api_export", "other"]},
+    "capture_tool": {"type": "string"},
+    "content_sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"},
+    "content_location": {"type": "string", "description": "Private storage reference; never a public URL unless content is intentionally public."},
+    "review_status": {"enum": ["pending", "in_review", "reviewed", "rejected", "superseded"]},
+    "visibility": {"enum": ["private", "restricted", "public_approved"]},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "reviewed_by": {"type": "string"},
+    "reviewed_at": {"type": "string", "format": "date-time"}
+  }
+}
