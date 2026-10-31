@@ -1,0 +1,34 @@
+# CareerOS™ Conversation Record
+
+## 2026-10-31 — Repository identification and profile publication
+
+### User request
+Update CareerOS and locate its GitHub repository, then add the supplied profile materials.
+
+### Repository
+- Canonical repository: https://github.com/Devf7en/CareerOS
+- Owner: Devf7en
+- Default branch: main
+- Visibility: Public
+- User selected Option 2: keep the repository public and publish the profile materials.
+
+### Source materials
+- CV6_Senior_Product_Manager_OSLondon_v1.0.docx
+- CV6_Senior_Product_Manager_OSLondon_v1.0.pdf
+
+### Published in this update
+- README.md — repository overview, release metadata, public-repository notice and structure.
+- career-profile/CareerOS_Professional_Profile_Product_Leader_Edition_v1.0.md — accessible text companion transcribed from the supplied DOCX.
+- conversation.mdc — this decision and change record.
+
+### Important publication note
+The user explicitly selected a public repository. Public contents may be viewed, copied, indexed, and redistributed by others. The source DOCX contains personal contact details. The Markdown companion intentionally does not repeat telephone numbers or email addresses.
+
+### Outstanding binary-file publication
+The original DOCX and PDF were supplied in this conversation and inspected. The current GitHub connector exposes text-file and Git-object operations but does not provide a direct binary attachment upload path for these source files in this workflow. Therefore, the original DOCX and PDF have **not** yet been committed. Do not represent them as uploaded. Add them as binary assets in a follow-up upload using a Git-capable client or a supported binary upload route.
+
+### Integrity rules
+- Preserve the canonical brand spelling **b3Ɛq**.
+- Do not silently alter factual claims, dates, credentials, or metrics in the source profile.
+- Treat the Markdown profile as a companion transcription, not as the designed source document.
+- Future updates should retain versioning and append decisions to this record.
