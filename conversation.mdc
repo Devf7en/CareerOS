@@ -32,3 +32,31 @@ The original DOCX and PDF were supplied in this conversation and inspected. The 
 - Do not silently alter factual claims, dates, credentials, or metrics in the source profile.
 - Treat the Markdown profile as a companion transcription, not as the designed source document.
 - Future updates should retain versioning and append decisions to this record.
+
+
+## 2026-10-31 — CareerOS architecture foundation
+
+### User direction
+User approved proceeding with the CareerOS™ evolution beyond a CV repository toward a complete Career Operating System. Repository remains public by explicit choice.
+
+### Added to main
+- docs/CareerOS_Architecture_v1.0.md — domain capabilities, reference architecture, AI operating contract and EBMA™ mapping.
+- docs/ROADMAP.md — P0 through P6 delivery phases with acceptance gates.
+- docs/PRIVACY_AND_DATA_GOVERNANCE.md — classification, public/private boundaries, provenance and incident response.
+- docs/adr/0001-modular-monolith-first.md — initial architecture decision.
+- schemas/professional-profile.schema.json — JSON Schema for a provenance-aware canonical professional profile.
+- README.md updated to reflect the actual repository contents and implementation status.
+
+### Tracking
+Created GitHub issue #1: P0 — Implement CareerOS trusted profile and evidence foundation.
+https://github.com/Devf7en/CareerOS/issues/1
+
+### Architecture decisions
+- Start with a modular monolith and explicit domain boundaries.
+- Treat EBMA™ as the architecture-governance reference.
+- Use the b3Ɛq intelligence sequence: Observe, Understand, Predict, Recommend, Simulate, Act, Learn.
+- Human approval is mandatory before external applications or messages.
+- Verified, user-confirmed, inferred, estimated and unverified claims must remain distinguishable.
+
+### Publication and implementation boundaries
+The source DOCX/PDF remain uncommitted because they contain direct contact details. The public Markdown profile remains the accessible companion. The new schema is a contract, not yet an implemented or validated application feature. No application runtime, automated tests, import/export pipeline or production integration is claimed complete.
