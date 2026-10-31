@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Devf7en/CareerOS/schemas/professional-profile.schema.json",
+  "title": "CareerOS Professional Profile",
+  "description": "Canonical, provenance-aware professional profile record. Claims should not be represented as verified without supporting evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_id",
+    "display_name",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "profile_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "display_name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "headline": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "location": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "work_authorization": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "languages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/language"
+      }
+    },
+    "positions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/position"
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/skill"
+      }
+    },
+    "credentials": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/credential"
+      }
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/project"
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/claim"
+      }
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "private",
+        "unlisted",
+        "public"
+      ],
+      "default": "private"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "user_confirmed",
+            "inferred",
+            "estimated",
+            "unverified"
+          ]
+        },
+        "source_label": {
+          "type": "string"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reviewed_by_user": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "claim_id",
+        "text",
+        "provenance"
+      ],
+      "properties": {
+        "claim_id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "private",
+            "unlisted",
+            "public"
+          ],
+          "default": "private"
+        }
+      }
+    },
+    "language": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "proficiency_label": {
+          "type": "string"
+        },
+        "framework": {
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "organization"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "end_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "is_current": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "skill": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "proficiency": {
+          "type": "string"
+        },
+        "last_used": {
+          "type": "string",
+          "format": "date"
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "credential": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "issuer": {
+          "type": "string"
+        },
+        "issued_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "expiry_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "credential_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "outcomes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/provenance"
+        }
+      }
+    }
+  }
+}
