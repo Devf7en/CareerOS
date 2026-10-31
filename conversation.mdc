@@ -150,3 +150,19 @@ The user emphasized: "I wear many hats." CareerOS must preserve the user's bread
 - No CV binaries, contact details, private snapshots or canonical personal profile data were added.
 - The contracts have not yet been run through the repository's automated CI in this session. CI remains unverified.
 - These are contracts, not a completed reconciliation engine or reviewer interface.
+
+
+## 2026-10-31 — Multi-hat schema and deterministic reconciliation extraction
+
+### Implemented
+- Corrected the canonical profile schema itself to include `professional_hats`; this is now a real schema field, not merely a documented design principle.
+- Added `$defs.professionalHat` with stable hat ID, label, domain, description, linked position/capability references, evidence IDs and provenance.
+- Added `src/careeros/reconcile.py` for deterministic, line-level candidate extraction from local staging records. Exact source lines and line numbers are preserved. Candidate IDs are repeatable for the same source, snapshot and line.
+- Added tests for exact wording preservation, stable IDs, snapshot-sensitive IDs, missing source identity and conservative comparison normalization.
+- Extended contract tests to validate all five schemas, accept multi-hat profile structures and reject an accepted item that remains unverified.
+
+### Safety boundary
+- Extraction does not semantically classify, deduplicate, verify or adjudicate claims.
+- Candidate items remain `unverified`, `unreviewed` and `private`.
+- No private CV content or personal profile data has been committed.
+- The GitHub Actions workflow has not yet been re-verified after these changes. A previously observed failed job's log retrieval returned an unavailable artifact response, so its root cause remains unknown.
