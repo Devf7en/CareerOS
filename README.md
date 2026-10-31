@@ -22,7 +22,11 @@ The original DOCX and PDF source files have not been committed to this repositor
 - `docs/ROADMAP.md` — phased implementation plan and exit gates
 - `docs/PRIVACY_AND_DATA_GOVERNANCE.md` — public/private data policy
 - `docs/adr/` — architecture decision records
-- `schemas/` — canonical, provenance-aware data contracts
+- `schemas/` — canonical profile, evidence and skills data contracts
+- `src/careeros/` — Python contract validation CLI
+- `tests/` — schema and data-contract tests
+- `examples/` — non-personal profile template
+- `.github/workflows/ci.yml` — automated contract checks
 - `conversation.mdc` — decision and change history
 
 ## Product domains
