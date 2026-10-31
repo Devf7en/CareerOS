@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Devf7en/CareerOS/schemas/skill.schema.json",
+  "title": "CareerOS Skill",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["skill_id", "name", "category", "proficiency_status", "verification_status", "visibility"],
+  "properties": {
+    "skill_id": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "category": {"type": "string", "enum": ["product", "leadership", "engineering", "architecture", "data_ai", "delivery", "business", "communication", "domain", "other"]},
+    "proficiency_status": {"type": "string", "enum": ["learning", "practicing", "working", "advanced", "expert", "not_assessed"]},
+    "years_experience_estimate": {"type": "number", "minimum": 0},
+    "last_used": {"type": "string", "format": "date"},
+    "evidence_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "verification_status": {"type": "string", "enum": ["verified", "user_confirmed", "inferred", "estimated", "unverified", "disputed"]},
+    "visibility": {"type": "string", "enum": ["private", "unlisted", "public"]},
+    "notes": {"type": "string"}
+  }
+}
