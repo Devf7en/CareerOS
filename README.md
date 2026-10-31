@@ -23,7 +23,7 @@ The original DOCX and PDF source files have not been committed to this repositor
 - `docs/PRIVACY_AND_DATA_GOVERNANCE.md` — public/private data policy
 - `docs/adr/` — architecture decision records
 - `schemas/` — canonical profile, evidence and skills data contracts
-- `src/careeros/` — Python contract validation CLI
+- `src/careeros/` — Python contract validation, cross-record integrity and local DOCX/PDF ingestion staging CLIs
 - `tests/` — schema and data-contract tests
 - `examples/` — non-personal profile template
 - `.github/workflows/ci.yml` — automated contract checks
@@ -40,6 +40,7 @@ Identity & Profile · Evidence Vault · Skills & Competencies · Portfolio & Pro
 - Human approval is required before external applications or messages.
 - Sensitive evidence, identity documents and secrets are never public by default.
 - Data portability, auditability, explainability and privacy are foundational.
+- Source ingestion preserves originals, records SHA-256 provenance, and stages extracted text for human review; it does not verify claims.
 
 ## Development status
 
