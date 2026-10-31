@@ -60,3 +60,28 @@ https://github.com/Devf7en/CareerOS/issues/1
 
 ### Publication and implementation boundaries
 The source DOCX/PDF remain uncommitted because they contain direct contact details. The public Markdown profile remains the accessible companion. The new schema is a contract, not yet an implemented or validated application feature. No application runtime, automated tests, import/export pipeline or production integration is claimed complete.
+
+
+## 2026-10-31 — P0 contract implementation and source register
+
+### User clarification
+User identified https://me.f7en.com as an important résumé source and asked whether it had been included. It had not been included in the initial source transcription, which used only the supplied DOCX and PDF. A retrieval attempt did not yield readable page content. This source is now registered as SRC-003, priority/pending verification. Do not infer its contents or reconcile it by guesswork.
+
+### Added implementation artifacts
+- docs/SOURCE_REGISTER.md — source inventory and conflict/reconciliation policy; records me.f7en.com as pending retrieval.
+- schemas/evidence-item.schema.json — evidence metadata, provenance, verification and visibility contract.
+- schemas/skill.schema.json — skills and competency metadata contract.
+- examples/profile.template.json — non-personal, private-by-default profile template.
+- src/careeros/ — Python package and JSON Schema validation CLI.
+- tests/test_contracts.py — schema, template, evidence and skill contract tests.
+- requirements-dev.txt and pyproject.toml — package/test dependencies.
+- .gitignore — local environments, secrets and private evidence exclusions.
+- .github/workflows/ci.yml — automated contract test workflow.
+- docs/P0_IMPLEMENTATION.md — implementation record and commands.
+- README.md — updated repository map.
+
+### Validation status
+The code, schemas and tests are committed. GitHub Actions is configured, but its first run has not yet been inspected; CI is not claimed to be passing. Import/export, secure evidence storage, source reconciliation and production authentication remain incomplete.
+
+### Data safety
+No private DOCX/PDF binaries or personal canonical profile JSON were added. The example profile contains placeholders only. Public profile facts must not be promoted to verified without source review.
