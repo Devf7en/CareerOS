@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://careeros.f7en.com/schemas/reconciliation-item.schema.json",
+  "title": "CareerOS Reconciliation Item",
+  "description": "A candidate professional claim linked to immutable source wording and reviewed independently. A candidate is not a verified fact.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["item_id", "claim_type", "source_id", "source_snapshot_id", "source_locator", "source_text", "verification_status", "adjudication_status", "visibility"],
+  "properties": {
+    "item_id": {"type": "string", "minLength": 1},
+    "claim_type": {"enum": ["identity", "headline", "role", "organization", "date", "achievement", "metric", "skill", "credential", "education", "language", "project", "other"]},
+    "source_id": {"type": "string", "pattern": "^SRC-[0-9]{3,}$"},
+    "source_snapshot_id": {"type": "string", "minLength": 1},
+    "source_locator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "value"],
+      "properties": {
+        "kind": {"enum": ["page", "paragraph", "line", "section", "url_fragment", "json_pointer", "manual_reference"]},
+        "value": {"type": "string", "minLength": 1}
+      }
+    },
+    "source_text": {"type": "string", "minLength": 1, "description": "Exact source wording; preserve punctuation and original language."},
+    "normalized_claim": {"type": "string", "description": "Optional derived wording. Must never replace source_text."},
+    "verification_status": {"enum": ["verified", "user_confirmed", "inferred", "estimated", "unverified", "disputed"]},
+    "adjudication_status": {"enum": ["unreviewed", "accepted", "rejected", "needs_user_decision", "conflict_open"]},
+    "conflict_group_id": {"type": "string"},
+    "conflicts_with": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+    "review_note": {"type": "string"},
+    "reviewed_by": {"type": "string"},
+    "reviewed_at": {"type": "string", "format": "date-time"},
+    "visibility": {"enum": ["private", "restricted", "public_approved"]}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"adjudication_status": {"const": "accepted"}}, "required": ["adjudication_status"]},
+      "then": {"properties": {"verification_status": {"enum": ["verified", "user_confirmed"]}}}
+    },
+    {
+      "if": {"properties": {"verification_status": {"const": "disputed"}}, "required": ["verification_status"]},
+      "then": {"properties": {"adjudication_status": {"enum": ["unreviewed", "needs_user_decision", "conflict_open", "rejected"]}}}
+    }
+  ]
+}
