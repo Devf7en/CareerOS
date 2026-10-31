@@ -99,3 +99,9 @@ No private DOCX/PDF binaries or personal canonical profile JSON were added. The 
 - Files are committed to `main`; this connector session did not execute the Python test suite locally.
 - The available GitHub workflow-run lookup is limited to pull-request-triggered runs, so it cannot establish the status of the push-triggered CI run for this update. CI remains **unverified**, not passing.
 - `me.f7en.com` remains a registered priority source but its page content has not yet been retrieved; no claims have been inferred from it.
+
+
+### P0.1 integration follow-through
+- Extended `src/careeros/validate.py` with `--evidence-file` for profile validation. The command validates each evidence record against its schema and, when those records are schema-valid, checks cross-document claim/evidence references.
+- Updated the P0 implementation guide with the integrated CLI invocation.
+- This is committed implementation, but execution of pytest and the CLI remains pending a verifiable CI run or local test execution.
