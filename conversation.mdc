@@ -105,3 +105,20 @@ No private DOCX/PDF binaries or personal canonical profile JSON were added. The 
 - Extended `src/careeros/validate.py` with `--evidence-file` for profile validation. The command validates each evidence record against its schema and, when those records are schema-valid, checks cross-document claim/evidence references.
 - Updated the P0 implementation guide with the integrated CLI invocation.
 - This is committed implementation, but execution of pytest and the CLI remains pending a verifiable CI run or local test execution.
+
+
+## 2026-10-31 — P0.2 private source-ingestion staging
+
+### Implemented
+- Added `src/careeros/ingest.py`, a local-only DOCX/PDF text extraction staging CLI.
+- The staging record captures source ID, filename, format, SHA-256 hash, extraction timestamp, pending-human-review status, an extraction limitation warning, and extracted text.
+- Added optional `ingest` dependencies (`python-docx`, `pypdf`) so the core package remains lightweight.
+- Added basic ingestion tests for hashing and unsupported formats.
+- Added `private-staging/` and `*.staging.json` to `.gitignore`; documented commands in `docs/P0_IMPLEMENTATION.md` and capability boundaries in `README.md`.
+
+### Safety and quality boundaries
+- The CLI reads source documents but does not modify them or upload their contents.
+- Extracted text is untrusted staging material, not verified professional claims.
+- Scanned-PDF OCR, image/chart extraction, source-to-source reconciliation and claim-level review are not implemented yet.
+- Tests and GitHub Actions status have not been executed/verified in this session.
+- `me.f7en.com` remains pending retrieval; this update does not claim to have read or incorporated its contents.
