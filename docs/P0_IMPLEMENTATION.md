@@ -45,3 +45,24 @@ On Windows PowerShell, activate with `.venv\\Scripts\\Activate.ps1`.
 4. Reconcile me.f7en.com, DOCX, PDF, LinkedIn and selected GitHub evidence without silent conflict resolution.
 5. Generate private canonical profile data only in a suitably private storage location.
 6. Generate a reviewed public profile edition from approved public claims.
+
+
+## P0.3 — Provenance-first reconciliation contracts
+
+### Added contracts
+- `schemas/source-snapshot.schema.json` records a captured source independently from the claims later derived from it. It includes source identity, snapshot ID, capture timestamp and method, SHA-256, review status, visibility and limitations.
+- `schemas/reconciliation-item.schema.json` records one candidate claim with its source snapshot, exact source wording, locator, optional normalized wording, verification status, adjudication status and conflict links.
+
+### Non-negotiable reconciliation rules
+1. Exact source wording is retained in `source_text`; normalization is a separate optional field.
+2. A candidate claim is not a verified fact merely because it was extracted or appears in multiple documents.
+3. An item can be accepted only when its status is `verified` or `user_confirmed`; inferred, estimated, unverified and disputed items cannot be silently promoted.
+4. Conflicts are linked through a conflict-group identifier and explicit item references. They remain open until reviewed.
+5. Every item inherits a source snapshot reference and a locator; source provenance is not optional.
+6. Visibility defaults operationally to private. A public repository must not contain personal source snapshots or private claim inventories.
+
+### Hat-aware professional identity
+CareerOS must model a multi-hat professional as one coherent identity with many concurrent or sequential roles, capability clusters and evidence relationships. A role-specific CV is a derived presentation, not a replacement for the canonical profile. Role labels must not be collapsed into one headline when doing so loses meaningful scope; nor should breadth be exaggerated into unsupported titles or claims.
+
+### Current implementation boundary
+These are data contracts only. A reconciliation parser, conflict-group integrity validator, reviewer workflow, private snapshot store and source capture automation remain to be implemented. The me.f7en.com source remains pending actual readable retrieval. No new personal source material has been committed.
