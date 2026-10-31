@@ -66,3 +66,17 @@ CareerOS must model a multi-hat professional as one coherent identity with many 
 
 ### Current implementation boundary
 These are data contracts only. A reconciliation parser, conflict-group integrity validator, reviewer workflow, private snapshot store and source capture automation remain to be implemented. The me.f7en.com source remains pending actual readable retrieval. No new personal source material has been committed.
+
+
+## P0.3 implementation follow-through — multi-hat schema and candidate extraction
+
+- Extended the canonical profile schema with `professional_hats`, a collection of distinct professional capacities. Each hat can link to position references, capability references, evidence IDs and provenance. It does not replace the position history.
+- Added `src/careeros/reconcile.py` with deterministic line-level candidate extraction from a local staging record. Each non-empty source line retains its exact wording, one-based line locator, source ID and snapshot reference. Candidate IDs are deterministic for the same source/snapshot/line.
+- Extracted candidates are always private, unverified and unreviewed. The extractor does not infer claim categories, merge similar statements, resolve conflicts or promote claims.
+- Added `tests/test_reconcile.py` and contract tests for multi-hat profiles and rejection of accepted-but-unverified reconciliation items.
+
+### Remaining work
+- Integrate candidate extraction into a CLI that reads private staging records and writes private reconciliation files.
+- Extend cross-record integrity validation to reconciliation snapshot references and conflict links.
+- Add a reviewer/adjudication workflow and secure private storage.
+- Investigate and verify GitHub Actions results. The previous observed failed run's log endpoint was unavailable; do not infer its root cause.
