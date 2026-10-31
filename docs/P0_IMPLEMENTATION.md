@@ -20,6 +20,11 @@ source .venv/bin/activate
 python -m pip install -e ".[dev]"
 python -m pytest -q
 python -m careeros.validate profile examples/profile.template.json
+
+# Install optional document parsers and extract a source into a local review file:
+python -m pip install -e ".[ingest]"
+python -m careeros.ingest /path/to/source.docx --source-id SRC-001 --output private-staging/SRC-001.staging.json
+python -m careeros.ingest /path/to/source.pdf --source-id SRC-002 --output private-staging/SRC-002.staging.json
 python -m careeros.validate profile path/to/profile.json --evidence-file path/to/evidence.json
 ```
 
@@ -29,7 +34,7 @@ On Windows PowerShell, activate with `.venv\\Scripts\\Activate.ps1`.
 - The workflow has been committed but its first run has not yet been observed; do not claim CI is passing until GitHub reports a successful run.
 - The profile schema is an initial contract and needs further domain review before production use.
 - Evidence binary storage, authenticated access, encryption, retention and deletion are not implemented.
-- CV/DOCX/PDF extraction and reconciliation are not implemented.
+- DOCX/PDF text extraction is available as an optional local staging CLI. Source reconciliation, OCR for scanned PDFs, and claim-level extraction remain incomplete.
 - No personal profile data has yet been migrated into a canonical JSON record; the public template is intentionally generic.
 - The me.f7en.com page is registered as a priority source but has not yet been retrieved or verified.
 
