@@ -14,3 +14,6 @@ secrets/
 private-evidence/
 local-data/
 .DS_Store
+
+private-staging/
+*.staging.json
