@@ -14,7 +14,7 @@ def schema(name):
 
 
 def test_all_schemas_are_valid_json_schema():
-    for name in ("professional-profile.schema.json", "evidence-item.schema.json", "skill.schema.json"):
+    for name in ("professional-profile.schema.json", "evidence-item.schema.json", "skill.schema.json", "source-snapshot.schema.json", "reconciliation-item.schema.json"):
         schema(name)
 
 
@@ -47,4 +47,27 @@ def test_skill_contract_accepts_unassessed_skill():
 def test_skill_contract_rejects_unsubstantiated_proficiency_label():
     record = {"skill_id": "sk-2", "name": "Example skill", "category": "other", "proficiency_status": "world-class", "verification_status": "unverified", "visibility": "private"}
     errors = list(Draft202012Validator(schema("skill.schema.json")).iter_errors(record))
+    assert errors
+
+
+def test_multi_hat_profile_identity_is_supported():
+    profile = json.loads((ROOT / "examples" / "profile.template.json").read_text(encoding="utf-8"))
+    profile["professional_hats"] = [
+        {"hat_id": "hat-founder", "label": "Founder"},
+        {"hat_id": "hat-architect", "label": "Enterprise Architect"}
+    ]
+    errors = list(Draft202012Validator(schema("professional-profile.schema.json")).iter_errors(profile))
+    assert errors == []
+
+
+def test_reconciliation_item_cannot_be_accepted_while_unverified():
+    item = {
+        "item_id": "cand-1", "claim_type": "role", "source_id": "SRC-001",
+        "source_snapshot_id": "snap-1",
+        "source_locator": {"kind": "line", "value": "4"},
+        "source_text": "Founder and Product Lead",
+        "verification_status": "unverified", "adjudication_status": "accepted",
+        "visibility": "private"
+    }
+    errors = list(Draft202012Validator(schema("reconciliation-item.schema.json")).iter_errors(item))
     assert errors
