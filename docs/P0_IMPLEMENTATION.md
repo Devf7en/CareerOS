@@ -8,7 +8,7 @@
 - A non-personal profile template with private visibility as its default.
 - Python package skeleton and a JSON Schema validation CLI.
 - Pytest contract tests covering schema validity, template validity, evidence provenance/visibility requirements, controlled skill proficiency labels, and cross-record profile/evidence reference integrity.
-- Cross-record integrity checker for duplicate claim/evidence IDs, unresolved profile-to-evidence references, and unresolved evidence-to-claim references (`src/careeros/integrity.py`).
+- Cross-record integrity checker for duplicate claim/evidence IDs, unresolved profile-to-evidence references, and unresolved evidence-to-claim references (`src/careeros/integrity.py`), integrated into the validation CLI with `--evidence-file`.
 - Development dependencies and package configuration.
 - GitHub Actions workflow to run contract tests on pushes to main, pull requests and manual dispatch.
 - Source register identifying the uploaded CV files, me.f7en.com, LinkedIn and GitHub portfolio as distinct sources.
@@ -20,6 +20,7 @@ source .venv/bin/activate
 python -m pip install -e ".[dev]"
 python -m pytest -q
 python -m careeros.validate profile examples/profile.template.json
+python -m careeros.validate profile path/to/profile.json --evidence-file path/to/evidence.json
 ```
 
 On Windows PowerShell, activate with `.venv\\Scripts\\Activate.ps1`.
