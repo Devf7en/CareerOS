@@ -8,6 +8,8 @@ from typing import Any
 
 from jsonschema import Draft202012Validator, FormatChecker
 
+from careeros.integrity import validate_profile_references
+
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMAS = {
     "profile": ROOT / "schemas" / "professional-profile.schema.json",
@@ -35,10 +37,22 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("kind", choices=sorted(SCHEMAS))
     parser.add_argument("record", type=Path)
+    parser.add_argument("--evidence-file", type=Path, help="JSON array of evidence records; enables cross-reference checks for profile records")
     args = parser.parse_args()
     try:
         record = load_json(args.record)
         errors = validate_record(args.kind, record)
+        if args.evidence_file is not None:
+            if args.kind != "profile":
+                parser.error("--evidence-file is supported only when validating a profile")
+            evidence_items = load_json(args.evidence_file)
+            if not isinstance(evidence_items, list):
+                parser.error("Evidence file must contain a JSON array")
+            for index, item in enumerate(evidence_items):
+                item_errors = validate_record("evidence", item)
+                errors.extend(f"evidence/{index}/{error}" for error in item_errors)
+            if not errors:
+                errors.extend(validate_profile_references(record, evidence_items))
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
     if errors:
