@@ -85,3 +85,17 @@ The code, schemas and tests are committed. GitHub Actions is configured, but its
 
 ### Data safety
 No private DOCX/PDF binaries or personal canonical profile JSON were added. The example profile contains placeholders only. Public profile facts must not be promoted to verified without source review.
+
+
+## 2026-10-31 — P0.1 cross-record integrity layer
+
+### Implemented
+- Added `src/careeros/integrity.py` to validate relationships that individual JSON Schemas cannot enforce across separate profile and evidence documents.
+- Added checks for duplicate claim IDs and evidence IDs, unresolved evidence references from claims/skills/projects, and unresolved claim references from evidence items.
+- Added focused tests in `tests/test_integrity.py` for valid references, dangling references in both directions, and duplicate identifiers.
+- Updated `docs/P0_IMPLEMENTATION.md` with the implementation and next integration step.
+
+### Validation boundary
+- Files are committed to `main`; this connector session did not execute the Python test suite locally.
+- The available GitHub workflow-run lookup is limited to pull-request-triggered runs, so it cannot establish the status of the push-triggered CI run for this update. CI remains **unverified**, not passing.
+- `me.f7en.com` remains a registered priority source but its page content has not yet been retrieved; no claims have been inferred from it.
