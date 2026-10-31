@@ -36,7 +36,7 @@ Identity & Profile · Evidence Vault · Skills & Competencies · Portfolio & Pro
 ## Core operating principles
 
 - Evidence before claims; provenance and verification status are explicit.
-- One professional source of truth; role-specific documents are derived views. The canonical identity supports multiple concurrent and sequential professional hats, roles and capability clusters.
+- One professional source of truth; role-specific documents are derived views. The canonical profile supports multiple professional hats, while deterministic reconciliation stages source lines for human review. The canonical identity supports multiple concurrent and sequential professional hats, roles and capability clusters.
 - Human approval is required before external applications or messages.
 - Sensitive evidence, identity documents and secrets are never public by default.
 - Data portability, auditability, explainability and privacy are foundational.
