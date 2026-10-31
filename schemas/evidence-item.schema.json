@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Devf7en/CareerOS/schemas/evidence-item.schema.json",
+  "title": "CareerOS Evidence Item",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "kind", "label", "source", "verification_status", "visibility"],
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1},
+    "kind": {"type": "string", "enum": ["resume", "credential", "certificate", "work_sample", "project_record", "reference", "employment_record", "publication", "other"]},
+    "label": {"type": "string", "minLength": 1},
+    "description": {"type": "string"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_type", "reference"],
+      "properties": {
+        "source_type": {"type": "string", "enum": ["uploaded_file", "url", "user_statement", "organization_record", "third_party_record", "system_generated"]},
+        "reference": {"type": "string", "minLength": 1},
+        "retrieved_at": {"type": "string", "format": "date-time"},
+        "content_hash": {"type": "string"}
+      }
+    },
+    "verification_status": {"type": "string", "enum": ["verified", "user_confirmed", "inferred", "estimated", "unverified", "disputed"]},
+    "visibility": {"type": "string", "enum": ["private", "unlisted", "public"]},
+    "issued_at": {"type": "string", "format": "date"},
+    "expires_at": {"type": "string", "format": "date"},
+    "related_claim_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "tags": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "notes": {"type": "string"}
+  }
+}
