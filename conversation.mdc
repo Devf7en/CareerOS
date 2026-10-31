@@ -125,3 +125,28 @@ No private DOCX/PDF binaries or personal canonical profile JSON were added. The 
 
 ### Post-commit source inspection correction
 - A source re-read found escaped newline literals in the first ingestion implementation. Corrected paragraph/table joining and JSON output to use actual newline characters in commit `8f659815da2e0d0342c1f227eb923d505b3d3476`.
+
+
+## 2026-10-31 — P0.3 reconciliation contracts and multi-hat identity principle
+
+### User clarification
+The user emphasized: "I wear many hats." CareerOS must preserve the user's breadth and multi-dimensional professional identity. It must not reduce the canonical identity to a single title or force overlapping roles into a false linear chronology.
+
+### Identity modelling decision
+- Model one coherent professional identity with multiple concurrent and sequential roles.
+- Keep role titles, responsibilities, capabilities and evidence as distinct linked concepts.
+- Permit role-specific career editions as filtered presentations of the canonical profile; never treat an edition as the complete identity.
+- Preserve evidence boundaries: breadth is represented only where supported by source records, user confirmation or documented experience.
+- Do not infer or invent titles, dates, outcomes or credentials to make a multi-hat narrative sound stronger.
+
+### Added
+- `schemas/source-snapshot.schema.json` — provenance record for captured source versions, including content hash, capture method, timestamp, review state, limitations and visibility.
+- `schemas/reconciliation-item.schema.json` — claim-level source wording, locator, normalized wording, verification and adjudication statuses, and conflict links.
+- Updated `docs/P0_IMPLEMENTATION.md` with P0.3 contract boundaries and multi-hat identity rules.
+- Updated `README.md` to reflect the additional contracts and identity principle.
+
+### Safety and validation
+- The schemas are committed to the public repository; they contain no personal source content.
+- No CV binaries, contact details, private snapshots or canonical personal profile data were added.
+- The contracts have not yet been run through the repository's automated CI in this session. CI remains unverified.
+- These are contracts, not a completed reconciliation engine or reviewer interface.
