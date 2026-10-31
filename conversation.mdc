@@ -122,3 +122,6 @@ No private DOCX/PDF binaries or personal canonical profile JSON were added. The 
 - Scanned-PDF OCR, image/chart extraction, source-to-source reconciliation and claim-level review are not implemented yet.
 - Tests and GitHub Actions status have not been executed/verified in this session.
 - `me.f7en.com` remains pending retrieval; this update does not claim to have read or incorporated its contents.
+
+### Post-commit source inspection correction
+- A source re-read found escaped newline literals in the first ingestion implementation. Corrected paragraph/table joining and JSON output to use actual newline characters in commit `8f659815da2e0d0342c1f227eb923d505b3d3476`.
