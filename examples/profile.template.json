@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "profile_id": "replace-with-generated-id",
+  "display_name": "Your Professional Name",
+  "headline": "Your professional headline",
+  "summary": "A concise, evidence-grounded professional summary.",
+  "location": {
+    "city": "",
+    "region": "",
+    "country": "",
+    "work_authorization": []
+  },
+  "languages": [],
+  "positions": [],
+  "skills": [],
+  "credentials": [],
+  "projects": [],
+  "claims": [],
+  "visibility": "private"
+}
