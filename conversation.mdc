@@ -166,3 +166,17 @@ The user emphasized: "I wear many hats." CareerOS must preserve the user's bread
 - Candidate items remain `unverified`, `unreviewed` and `private`.
 - No private CV content or personal profile data has been committed.
 - The GitHub Actions workflow has not yet been re-verified after these changes. A previously observed failed job's log retrieval returned an unavailable artifact response, so its root cause remains unknown.
+
+
+## 2026-11-01 — Private reconciliation CLI and integrity checks
+
+### Implemented
+- Added a local `python -m careeros.reconcile` command that reads an existing private ingestion staging JSON and writes deterministic candidate records under `private-staging/`.
+- The CLI preserves exact source lines and line locators. It does not classify, verify, merge or adjudicate claims.
+- Added cross-record checks for source snapshot references, duplicate reconciliation IDs, conflict-link resolution, reciprocal links and shared conflict groups.
+- Added `tests/test_reconciliation_integrity.py` and corrected comparison whitespace normalization and JSON newline output.
+
+### CI status
+- Inspected the latest known GitHub Actions run (run 32, commit `e5e0b34`). It completed with failure; the job metadata contained no step summaries and the log endpoint was unavailable. The failure cause is therefore still undiagnosed.
+- The latest code commits are not represented as passing tests. No claim of local or CI test success is made.
+- All private staging outputs remain excluded from public Git tracking.
