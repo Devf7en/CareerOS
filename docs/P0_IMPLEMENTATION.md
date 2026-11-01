@@ -80,3 +80,18 @@ These are data contracts only. A reconciliation parser, conflict-group integrity
 - Extend cross-record integrity validation to reconciliation snapshot references and conflict links.
 - Add a reviewer/adjudication workflow and secure private storage.
 - Investigate and verify GitHub Actions results. The previous observed failed run's log endpoint was unavailable; do not infer its root cause.
+
+
+## P0.3 implementation follow-through — private candidate staging and reconciliation integrity
+
+- Added a local CLI to turn an ingestion staging JSON file into deterministic, line-level reconciliation candidates:
+  `python -m careeros.reconcile private-staging/SRC-001.staging.json --output private-staging/reconciliation/SRC-001.candidates.json`
+- The CLI refuses output paths that are not under `private-staging/`. Candidate records retain exact source lines and locators and remain private, unverified and unreviewed.
+- Added `validate_reconciliation_references` to check source/snapshot identity pairs, duplicate candidate IDs, unresolved conflict links, reciprocal conflict links and shared conflict-group IDs.
+- Added focused cross-record integrity tests in `tests/test_reconciliation_integrity.py`.
+- Comparison normalization is deliberately conservative and does not rewrite source wording.
+
+### Validation and CI incident
+- The latest observed workflow run (run 32; 2026-10-31) ended in failure. GitHub's job endpoint returned no step details and the log download endpoint was unavailable. This prevents a reliable diagnosis from the available run metadata.
+- The repository changes are committed, but no local Python execution was performed through this GitHub-only workflow. Tests and CLI execution remain **unverified** until a usable runner result or local run is available.
+- No reconciliation candidates, source snapshots, or personal profile records were written to the public repository.
