@@ -49,7 +49,7 @@ def extract_line_candidates(
 
 def normalize_for_comparison(text: str) -> str:
     """Return a comparison key; never use it as replacement source wording."""
-    return re.sub(r"\\s+", " ", text).strip().casefold()
+    return re.sub(r"\s+", " ", text).strip().casefold()
 
 
 def main() -> int:
