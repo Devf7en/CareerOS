@@ -65,7 +65,7 @@ def main() -> int:
         staging = json.loads(args.staging_record.read_text(encoding="utf-8"))
         candidates = extract_line_candidates(staging, source_id=args.source_id, snapshot_id=args.snapshot_id)
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(candidates, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        args.output.write_text(json.dumps(candidates, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     except (OSError, json.JSONDecodeError, ValueError) as exc:
         parser.error(str(exc))
     print(f"Staged {len(candidates)} private, unverified candidates at {args.output}")
