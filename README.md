@@ -23,7 +23,7 @@ The original DOCX and PDF source files have not been committed to this repositor
 - `docs/PRIVACY_AND_DATA_GOVERNANCE.md` — public/private data policy
 - `docs/adr/` — architecture decision records
 - `schemas/` — canonical profile, evidence, skills, source-snapshot and reconciliation data contracts
-- `src/careeros/` — Python contract validation, cross-record integrity and local DOCX/PDF ingestion staging CLIs
+- `src/careeros/` — Python contract validation, cross-record integrity, local DOCX/PDF ingestion and private reconciliation staging CLIs
 - `tests/` — schema and data-contract tests
 - `examples/` — non-personal profile template
 - `.github/workflows/ci.yml` — automated contract checks
